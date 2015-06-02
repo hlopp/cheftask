@@ -2,7 +2,7 @@
 
 #chkconfig: 345 80 20
 
-export JBOSS_HOME=${JBOSS_HOME:-"<%=node['jboss']['jboss_home']%>"}
+JBOSS_HOME = '/opt/jboss/jboss-as-7.1.1.Final/'
 
 start(){
 	echo "Starting Jboss"
