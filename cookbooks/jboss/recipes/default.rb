@@ -61,7 +61,20 @@ end
 
 
 #Unzipping jboss
-execute "unzip_tomcat" do
+execute "unzip_jboss" do
    command "unzip /tmp/#{jboss_name}.zip -d #{jboss_home}"
    creates "#{jboss_home}/#{jboss_name}"
+end
+
+
+cookbook_file "jboss" do
+	path "/etc/init.d/jboss"
+	mode "0755"
+	group "root"
+	owner "root"
+	action :create_if_missing
+end
+
+service "jboss" do
+    action :start 
 end

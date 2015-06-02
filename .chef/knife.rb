@@ -1,5 +1,5 @@
-cookbook_path    "/root/cheftask/cookbooks"
-json_attribs "/root/cheftask/.chef/runlist.json"
+cookbook_path    "/root/gitrep/cheftask/cookbooks"
+json_attribs "/root/gitrep/cheftask/.chef/runlist.json"
 node_path        "nodes"
 role_path        "roles"
 environment_path "environments"
