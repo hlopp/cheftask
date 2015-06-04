@@ -6,7 +6,7 @@ JBOSS_HOME = '/opt/jboss/jboss-as-7.1.1.Final/'
 
 start(){
 	echo "Starting Jboss"
-	/opt/jboss/jboss-as-7.1.1.Final/bin/standalone.sh -b 10.6.102.68 > /home/user/jboss_log.txt &
+	/opt/jboss/jboss-as-7.1.1.Final/bin/standalone.sh -c standalone-ha.xml > /home/user/jboss_log.txt &
 }
 stop(){
     jboss_running="$( ps -ef | grep $JBOSS_HOME | grep -v 'grep' )"
@@ -32,7 +32,6 @@ restart(){
 	sleep 15
 	start
 }
-
 
 case "$1" in
     start)
