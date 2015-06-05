@@ -9,8 +9,8 @@
 
 
 jboss_home = node['jboss']['jboss_home'] 
-jboss_url = node['jboss']['url']
 jboss_name = node['jboss']['name']
+jboss_url = node['jboss']['url']
 
 #Installing unzip
 yum_package 'unzip' do
