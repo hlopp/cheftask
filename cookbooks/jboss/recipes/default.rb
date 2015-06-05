@@ -34,13 +34,13 @@ yum_package 'httpd-devel' do
 end
 
 
-cookbook_file "jboss.conf" do
-	path "/etc/httpd/conf.d/jboss.conf"
-	mode "0755"
-	group "root"
-	owner "root"
-	action :create_if_missing
-end
+#cookbook_file "jboss.conf" do
+#	path "/etc/httpd/conf.d/jboss.conf"
+#	mode "0755"
+#	group "root"
+#	owner "root"
+#	action :create_if_missing
+#end
 
 
 #Installinf mysql
@@ -69,19 +69,27 @@ end
 
 #Unzipping jboss
 execute "unzip_jboss" do
-   command "unzip /tmp/#{jboss_name}.zip -d #{jboss_home}"
-   creates "#{jboss_home}/#{jboss_name}"
+    command "unzip /tmp/#{jboss_name}.zip -d #{jboss_home}"
+    creates "#{jboss_home}/#{jboss_name}"
 end
 
 
 #Creating init script for jboss
-cookbook_file "jboss" do
-	path "/etc/init.d/jboss"
-	mode "0755"
-	group "root"
-	owner "root"
-	action :create_if_missing
+template "etc/init.d/jboss" do
+    source "jboss.erb"
+    mode "0755"
+    group "root"
+    owner "root"
+    action :create_if_missing
 end
+
+#cookbook_file "jboss" do
+#	path "/etc/init.d/jboss"
+#	mode "0755"
+#	group "root"
+#	owner "root"
+#	action :create_if_missing
+#end
 
 service "jboss" do
     action :start 
