@@ -7,12 +7,12 @@ execute "add_httpd_chkconfig" do
 	command "chkconfig httpd on"
 end
 
-cookbook_file "httpd.conf" do
-        path "/etc/httpd/conf/httpd.conf"
+template "/etc/httpd/conf/httpd.conf" do
+        source "httpd.conf.erb"
         mode "0755"
         group "root"
         owner "root"
-        action :create_if_missing
+        action :create
 end
 
 service "httpd" do

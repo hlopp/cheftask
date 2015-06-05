@@ -34,16 +34,16 @@ bash "modjk_manipulations" do
 end
 
 
-cookbook_file "modjk.conf" do
-        path "/etc/httpd/conf.d/modjk.conf"
+template  "/etc/httpd/conf.d/modjk.conf" do
+        source "modjk.conf.erb"
         mode "0755"
         group "root"
         owner "root"
         action :create_if_missing
 end
 
-cookbook_file "workers.properties" do
-	path "/etc/httpd/conf/workers.properties"
+template "/etc/httpd/conf/workers.properties" do
+	source "workers.properties.erb"
 	mode "0755"
 	group "root"
 	owner "root"
