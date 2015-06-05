@@ -11,6 +11,8 @@
 jboss_home = node['jboss']['jboss_home'] 
 jboss_url = node['jboss']['url']
 jboss_name = node['jboss']['name']
+modjk_url = node['httpd']['mod_jk']['url']
+modjk_name = node['httpd']['mod_jk']['name']
 
 #Installing unzip
 yum_package 'unzip' do
