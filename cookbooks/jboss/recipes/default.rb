@@ -2,33 +2,34 @@
 # Cookbook Name:: jboss
 # Recipe:: default
 #
-# Copyright 2015, YOUR_COMPANY_NAME
+# Copyright 2015
 #
 # All rights reserved - Do Not Redistribute
 #
 
 
+#Variables declared
 jboss_home = node['jboss']['jboss_home'] 
 jboss_name = node['jboss']['name']
 jboss_url = node['jboss']['url']
 
 #Installing unzip
 yum_package 'unzip' do
-	action :install
+    action :install
 end
 
 
 #Downoading jboss
 remote_file "#{jboss_name}.zip" do
-	source jboss_url
-	path "/tmp/#{jboss_name}.zip"
-	action :create_if_missing 
+    source jboss_url
+    path "/tmp/#{jboss_name}.zip"
+    action :create_if_missing 
 end 
 
 
 #Preparing home folder for jboss
 directory "#{jboss_home}" do
-	action :create
+    action :create
 end
 
 

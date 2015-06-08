@@ -1,0 +1,16 @@
+NameVirtualHost *:80
+<VirtualHost *:80>
+        ProxyRequests On
+        ProxyPass / http://127.0.0.1:8080/
+        ProxyPassReverse / http://127.0.0.1:8080/
+        ServerName jboss
+        ServerAlias jboss
+
+        <Proxy *>
+                Order deny,allow
+                Allow from all
+        </Proxy>
+
+        ProxyPreserveHost on
+</VirtualHost>
+
