@@ -24,8 +24,9 @@ passwd_templ.each do |new_user|
         password new_user[:password]
         uid new_user[:uid]
         gid new_user[:gid]
+        comment new_user[:comment]
         home new_user[:home_dir]
-        shell new_user[:def_shef]
+        shell new_user[:def_shell]
     end
 end        
         
