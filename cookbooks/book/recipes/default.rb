@@ -17,8 +17,9 @@ packages.each do |pck|
 end
 
 #Creating users
-passwd_templ = node[:book][:users]
-passwd_templ.each do |new_user|
+users_templ = node[:book][:users]
+ssh_key = 
+users_templ.each do |new_user|
     user new_user[:username] do
         action :create
         password new_user[:password]
@@ -28,5 +29,27 @@ passwd_templ.each do |new_user|
         home new_user[:home_dir]
         shell new_user[:def_shell]
     end
+    #Creating ssh-key
+    user = new_user[:username]
+    directory "/home/#{user}/.ssh" do
+        owner new_user[:uid]
+        group new_user[:gid]
+        mode 0755
+        action :create
+    end
+    file "/home/#{user}/.ssh/id_rsa.pub" do
+        content new_user[:ssh_key]
+        owner new_user[:uid]
+        group new_user[:gid]
+        mode 0755
+        action :create
+    end 
+    file "/home/#{user}/.ssh/authorized_keys" do
+        content new_user[:ssh_key]
+        owner new_user[:uid]
+        group new_user[:gid]
+        mode 0755
+        action :create
+    end
+
 end        
-        
